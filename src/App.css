@@ -1,3 +1,10 @@
+*{
+  padding:0;
+  margin:0;
+  box-sizing:border-box;
+}
+
+
 .App {
   text-align: center;
 }
@@ -35,4 +42,32 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.navBar{
+  display:flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+
+.logo{
+  background-color: black;
+  color:white;
+}
+
+.menuDeNavegacion{
+  display:flex;
+  justify-content:space-around;
+  align-items: center;
+  background-color:black;
+  color:white;
+  text-decoration: none;
+  list-style: none;
+  height:10vh;
+}
+
+.menuDeNavegacion li a{
+  text-decoration: none;
+  color:white;
 }
