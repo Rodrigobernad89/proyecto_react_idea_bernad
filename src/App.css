@@ -71,3 +71,17 @@
   text-decoration: none;
   color:white;
 }
+
+.contador{
+  margin:5px;
+}
+
+.marca{
+  margin-top:150px;
+  font-size:30px;
+}
+.bienvenida{
+  color:red;
+  font-size: 20px;
+  margin-top:150px;
+}
