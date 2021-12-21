@@ -84,4 +84,43 @@
   color:red;
   font-size: 20px;
   margin-top:150px;
+  margin-bottom:150px;
 }
+
+.tituloProducto{
+  margin-bottom: 50px;
+}
+
+.imagenProducto{
+  margin-bottom: 50px;
+  width:30%;
+}
+
+
+
+.botonSumar{
+  margin:5px;
+  color:white;
+  background-color: slateblue;
+}
+
+.botonRestar{
+  margin:5px;
+  color:white;
+  background-color: slateblue
+}
+
+
+.contador{
+  padding-right:80px;
+  padding-left:80px;
+  border:1px solid black;
+}
+
+.botonAgregar{
+  color:white;
+  background-color: slateblue;
+  margin:30px;
+  padding:10px;
+}
+
