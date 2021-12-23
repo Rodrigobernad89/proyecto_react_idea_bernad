@@ -124,3 +124,18 @@
   padding:10px;
 }
 
+.itemList{
+  display:flex;
+  justify-content: space-around;
+}
+
+.item{
+  display:flex;
+  flex-direction: column;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.tituloProductos{
+  margin:50px;
+}
