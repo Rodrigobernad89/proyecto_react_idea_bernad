@@ -139,3 +139,24 @@
 .tituloProductos{
   margin:50px;
 }
+
+.itemDetail{
+  display:flex;
+  justify-content: center;
+  align-items:center;
+}
+
+.imagenDetalle{
+  width:50%;
+}
+
+.tituloDetalle{
+  margin-bottom:20px;
+}
+.descripcionProducto{
+  margin:20px;
+}
+
+.precioDetalle{
+  margin:20px;
+}
