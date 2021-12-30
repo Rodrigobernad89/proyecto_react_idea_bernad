@@ -67,7 +67,7 @@
   height:10vh;
 }
 
-.menuDeNavegacion li a{
+.menuDeNavegacion .links{
   text-decoration: none;
   color:white;
 }
@@ -159,4 +159,8 @@
 
 .precioDetalle{
   margin:20px;
+}
+
+.producto{
+  text-decoration: none;
 }

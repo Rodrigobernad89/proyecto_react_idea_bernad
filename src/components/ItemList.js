@@ -9,7 +9,7 @@ function ItemList({title,productos}) {
             <h2 className="tituloProductos">{title}</h2>
             <div className="itemList">
                 {productos.map(p =>
-                    <Item className="item" producto={p}/>    
+                    <Item className="item" key={p.id}producto={p}/>    
                 )}
             </div>
         </div>

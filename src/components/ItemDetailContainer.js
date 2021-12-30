@@ -12,15 +12,14 @@ function ItemDetailContainer() {
 
     const getItems = () => {
         const getPromise = new Promise( (res, rej) => {
-            const items = [
+            const items =
                 {
                     id:1,
                     title:"Barra Cromada",
                     description:"Barra cromada olimpica de 20 kg para musculacion",
                     price:10000,
                     pictureUrl:barra
-                },
-            ]
+                }
 
             setTimeout( () => {
                 res(items)
@@ -33,11 +32,7 @@ function ItemDetailContainer() {
     return (
         <div>
             <div>
-                {items.map(i =>
-                    <ItemDetail item={i}/>
-                )
-                    
-                }
+                <ItemDetail item={items}/>
             </div>           
         </div>
     )
