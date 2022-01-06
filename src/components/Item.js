@@ -7,7 +7,7 @@ function Item({producto}) {
             <strong>{producto.id}</strong>    
             <h2>{producto.title}</h2>
             <span>${producto.price}</span>
-            <Link className="links" to="/item/:id"><img className="imagenProducto"src={producto.pictureUrl}/></Link>
+            <Link className="links" to={`/productos/${producto.id}`}><img className="imagenProducto"src={producto.pictureUrl}/></Link>
         </div>
     )
 }

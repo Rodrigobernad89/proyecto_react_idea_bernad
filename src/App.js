@@ -21,8 +21,8 @@ function App() {
         <h3 className="marca">RB Musculacion</h3>
         <Routes>
           <Route path="/" element={<ItemListContainer/>}/>
-          <Route path="/category/:id" element={<ItemListContainer/>}/>
-          <Route path="/item/:id" element={<ItemDetailContainer/>}/>
+          <Route path="/category/:cId" element={<ItemListContainer/>}/>
+          <Route path="/productos/:itemId" element={<ItemDetailContainer/>}/>
           <Route path="/cart" element={<CartWidget/>}/>
         </Routes>
 

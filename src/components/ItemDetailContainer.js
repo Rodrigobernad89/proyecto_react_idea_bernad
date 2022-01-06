@@ -1,41 +1,45 @@
 import React from 'react'
-import ItemDetail from './ItemDetail'
-import barra from '../assets/images/barra.jpg'
 import { useState,useEffect } from 'react'
+import ItemDetail from './ItemDetail'
+import {productos} from '../data/productos'
+import {useParams} from 'react-router-dom'
+
+
+
+
 
 function ItemDetailContainer() {
-    const [items, setItems] = useState([])
+    const [product, setProduct] = useState({});
+    const [loading, setLoading] = useState(true);
+
+    const { itemId } = useParams();
+
+    
 
     useEffect(() => {
-        getItems()
-    },[])
+    setLoading(true);
+    const getItems = new Promise((resolve) => {
+      setTimeout(() => {
+        const misProductos = productos.find(item => item.id === itemId);
+        console.log(misProductos)
+        resolve(misProductos);
+      }, 1000);
+    });
 
-    const getItems = () => {
-        const getPromise = new Promise( (res, rej) => {
-            const items =
-                {
-                    id:1,
-                    title:"Barra Cromada",
-                    description:"Barra cromada olimpica de 20 kg para musculacion",
-                    price:10000,
-                    pictureUrl:barra
-                }
+    getItems
+      .then((res) => {
+        setProduct(res);
+      })
+      .finally(() => setLoading(false));
+  }, [itemId]);
 
-            setTimeout( () => {
-                res(items)
-            }, 2000);
-            
-        })
-        getPromise.then( res => setItems(res))
-    }
+  return loading ? <h2>CARGANDO...</h2> : <div><ItemDetail producto={product} /></div>;
+};
 
-    return (
-        <div>
-            <div>
-                <ItemDetail item={items}/>
-            </div>           
-        </div>
-    )
-}
 
 export default ItemDetailContainer
+
+
+
+
+

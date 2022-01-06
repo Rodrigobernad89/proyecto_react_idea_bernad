@@ -1,58 +1,46 @@
 import React from 'react'
 import ItemCount from './ItemCount';
 import ItemList from './ItemList';
-import barra from '../assets/images/barra.jpg'
-import mancuerna from '../assets/images/mancuernas.jpg'
-import soga from '../assets/images/sogas.jpg'
+import { productos } from '../data/productos';
 import { useState,useEffect } from 'react'
+import { useParams } from 'react-router-dom';
 
 
 function ItemListContainer({greeting}) {
-    const [productos, setProductos] = useState([])
+    const [items, setItems] = useState([])
+    const [loading,setLoading] = useState(true);
+    const {cId}=useParams();
 
     useEffect(() => {
-        getProductos()
-    },[])
-
-    const getProductos = () => {
-        const getPromise = new Promise( (res, rej) => {
-            const productos = [
-                {
-                    id:1,
-                    title:"Barra Cromada",
-                    price:10000,
-                    pictureUrl:barra
-                },
-                {
-                    id:2,
-                    title:"Mancuernas",
-                    price:3000,
-                    pictureUrl:mancuerna
-                },
-                {
-                    id:3,
-                    title:"Soga Crossfit",
-                    price:1000,
-                    pictureUrl:soga
-                }
-            ]
-
-            setTimeout( () => {
-                res(productos)
-            }, 2000);
-            
-        })
-        getPromise.then( res => setProductos(res))
-        
-    }
-
-    return (
-        <div>
-            <p className="bienvenida">{greeting}</p>
-            {/*<ItemCount stock="5" initial="1"/>*/}
-            <ItemList className="itemList"title="Lista de Productos" productos={productos}/>
-        </div>
-    )
-}
+        setLoading(true);
+        const getItems = new Promise((resolve) => {
+          setTimeout(() => {
+            const misProductos = cId
+              ? productos.filter((producto) => producto.category === cId)
+              : productos;
+    
+            resolve(misProductos);
+          }, 2000);
+        });
+    
+        getItems
+          .then((res) => {
+            setItems(res);
+          })
+          .finally(() => setLoading(false));
+      }, [cId]);
+    
+      return loading ? (
+        <h2>CARGANDO...</h2>
+      ) : (
+        <>
+          <h3>{greeting}</h3>
+          <ItemList className="itemList"title="Lista de Productos" productos={items}/>
+        </>
+      );
+    };
 
 export default ItemListContainer
+
+
+
