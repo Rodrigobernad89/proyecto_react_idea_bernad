@@ -9,6 +9,7 @@ export const productos = [
         title:"Barra Cromada",
         category:"Barras",
         price:10000,
+        descripcion:"Barra cromada para Musculacion",
         pictureUrl:barra
     },
     {
@@ -16,6 +17,7 @@ export const productos = [
         title:"Mancuernas",
         category:"Mancuernas",
         price:3000,
+        descripcion:"Mancuerna cromada para Musculacion",
         pictureUrl:mancuerna
     },
     {
@@ -23,6 +25,7 @@ export const productos = [
         title:"Soga Crossfit",
         category:"Crossfit",
         price:1000,
+        descripcion:"Sogas de 10mm para crossfit",
         pictureUrl:soga
     }
 ]

@@ -6,7 +6,7 @@ import { FaMinus } from "react-icons/fa";
 
 
 
-function ItemCount({stock,initial}) {
+function ItemCount({stock,initial,onAdd}) {
     const [counter, setCounter] = useState(parseInt(initial));
     
     function handleIncrement(){
@@ -18,16 +18,12 @@ function ItemCount({stock,initial}) {
     }
 
     return (
-        <div>
-            <div> 
-            <h2 className="tituloProducto">Barra de musculacion</h2>
-            <img className="imagenProducto" src={barra}/>
-            </div>
+        <div className="contenedorCounter">         
             <button className='botonRestar' onClick={handleDecrement}><FaMinus/></button>
             <span className="contador">{counter}</span>
             <button className='botonSumar' onClick={handleIncrement}><FaPlus/></button>
             <div>
-                <button className="botonAgregar"onClick={()=>{console.log(`Se agrego ${counter} item del producto al carrito`)}}>Agregar al Carrito</button>
+                <button className="botonAgregar"onClick={onAdd}>Agregar al Carrito</button>
             </div>
         </div>
     )
