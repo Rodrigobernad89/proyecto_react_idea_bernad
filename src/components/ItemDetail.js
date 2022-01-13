@@ -1,12 +1,24 @@
-import react, { useEffect } from 'react'
+import react, { createContext, useEffect } from 'react'
 import { Link,NavLink } from "react-router-dom"
 import React from 'react'
 import ItemCount from './ItemCount'
-import{useState} from 'react'
-
+import{useState, useContext} from 'react'
+import { CartContext } from '../context/cartContext';
 
 function ItemDetail({producto}) {
     const [added, setAdded] = useState(false)
+    const {addItem,productosAgregados,contador} = useContext(CartContext)
+    
+
+    const productoId= JSON.parse(producto.id);
+
+    
+    
+    const clickHandler=(e)=>{
+        addItem(producto,contador.counter)
+        console.log(productosAgregados);
+    }    
+
     const onAdd= () =>{
         setAdded(true)
     }
@@ -14,7 +26,8 @@ function ItemDetail({producto}) {
     useEffect(()=>{
         console.log('added',added);
     },[added])
-
+    
+    
     return (
         <div>
             <h2 className="tituloProductos">Detalle de Producto</h2>
@@ -31,11 +44,11 @@ function ItemDetail({producto}) {
                 
             </div>
             {!added &&
-                <ItemCount stock="5" initial="1" onAdd={onAdd}/>
+                <ItemCount stock="5" initial="1" onAdd={onAdd} producto={producto}/>
             
             }
             {added &&
-                <NavLink to="/cart"><button className="botonAgregar" >Terminar compra</button></NavLink>
+                <NavLink to="/cart"><button className="botonAgregar" onClick={clickHandler}>Terminar compra</button></NavLink>
 
             }
         </div>
