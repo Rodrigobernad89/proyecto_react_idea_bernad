@@ -1,23 +1,40 @@
 import React, { useContext } from 'react'
 import { FaShoppingCart } from "react-icons/fa";
+import { Link,NavLink } from "react-router-dom"
 import { CartContext } from '../context/cartContext';
+import CartItem from './CartItem';
+import CartWidget from './CartWidget';
 
 
 function CartContainer() {
-    const {contador,productosAgregados,clear,removeItem}=useContext(CartContext)
+    const {productosAgregados,removeItem,clear}=useContext(CartContext)
     
-
-
     return (
         <div>
-            {productosAgregados.map(p=>
+            <h1>Carrito</h1>
+            {productosAgregados.length>0
+                ?productosAgregados.map((p)=>
+                    <div>
+                        <CartItem key={p.id} item={p} removeItem={removeItem}/>
+                        
+                        
+                    </div>
+                
+                )
+                :<div>
+                    <h2>No Hay Productos en el Carrito</h2>
+                    <NavLink to="/" ><button>Ir a Comprar</button>  </NavLink>
+                </div>
+            }
+            {productosAgregados.length>0?
                 <div>
-                    <h4 className="titulo-detalle">{p.item.title}</h4>
-                    <span className="contador">{p.quantity}</span>
-                    <button onClick={removeItem}>Remover Producto</button>
-                </div>     
-            )}
-            <button onClick={clear}>Vaciar Carrito</button>
+                    <div>
+                        <span>Total :</span>
+                    </div>
+                    <button onClick={clear}>Vaciar Carrito</button>
+                </div>
+                : ""
+            }
         </div>
     )
 }

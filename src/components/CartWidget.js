@@ -8,7 +8,10 @@ function CartWidget() {
 
     return (
         <div>
-           <li><a><FaShoppingCart/><span className="contador">{contador.counter}</span></a></li>
+            {productosAgregados.length>0
+                ? <li><a><FaShoppingCart/><span className="contador">{contador.counter}</span></a></li>
+                : <li><a><FaShoppingCart/></a></li>
+            }
         </div>
     )
 }

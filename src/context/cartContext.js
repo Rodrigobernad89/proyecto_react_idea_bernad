@@ -1,22 +1,32 @@
-import { createContext,useState } from "react";
+import { createContext,useState,useEffect } from "react";
 
 export const CartContext = createContext({
-    productosAgregados:[]
+    productosAgregados:[],
+    addItem:()=>{},
+    removeItem:()=>{}
+
 })
 
 export function CartContextProvider(props){
     const [productlist, setProductlist] = useState([])
     const [counter, setCounter] = useState([0])
+
+    useEffect(() => {
+        console.log('items',productlist);
+    }, [productlist])
     
-    const addItem = (item,quantity)=>{
-        setProductlist([...productlist,{item,quantity}]
-        )
+    const addItem = (item)=>{
+        setProductlist((prevItems) => {
+            return prevItems.concat(item)
+        })
     }
     
 
     
-    const removeItem = (item)=>{
-        productlist.filter(p=>p === item.id)
+    const removeItem = (itemId)=>{
+        setProductlist((prevItems) =>{
+            return prevItems.filter(p=>p.id !== itemId)
+        })
     }
 
     const clear=()=>{
