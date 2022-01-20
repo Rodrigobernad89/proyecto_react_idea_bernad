@@ -5,7 +5,6 @@ import soga from '../assets/images/sogas.jpg'
 
 export const productos = [
     {
-        id:"1",
         title:"Barra Cromada",
         category:"Barras",
         price:10000,
@@ -14,7 +13,6 @@ export const productos = [
         stock:10
     },
     {
-        id:"2",
         title:"Mancuernas",
         category:"Mancuernas",
         price:3000,
@@ -23,7 +21,6 @@ export const productos = [
         stock:5
     },
     {
-        id:"3",
         title:"Soga Crossfit",
         category:"Crossfit",
         price:1000,

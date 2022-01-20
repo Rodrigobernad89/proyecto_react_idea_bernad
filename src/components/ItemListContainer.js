@@ -1,33 +1,40 @@
 import React from 'react'
 import ItemCount from './ItemCount';
 import ItemList from './ItemList';
-import { productos } from '../data/productos';
 import { useState,useEffect } from 'react'
 import { useParams } from 'react-router-dom';
 
+
+import db from '../firebase/firebase';
+import { collection, getDocs, query, where, orderBy } from 'firebase/firestore';
 
 function ItemListContainer({greeting}) {
     const [items, setItems] = useState([])
     const [loading,setLoading] = useState(true);
     const {cId}=useParams();
 
-    useEffect(() => {
+    useEffect(async() => {
         setLoading(true);
-        const getItems = new Promise((resolve) => {
-          setTimeout(() => {
-            const misProductos = cId
-              ? productos.filter((producto) => producto.category === cId)
-              : productos;
-    
-            resolve(misProductos);
-          }, 2000);
-        });
-    
-        getItems
+        
+        const misProductos = cId ?         
+        query(collection(db,'products'),where('category','==',cId))
+        :
+        collection(db,'products');
+        try{
+        const querySnapshot = await getDocs(misProductos)
+        console.log(querySnapshot.docs)
+        setItems(querySnapshot.docs.map(el =>{
+          return {...el.data(),id:el.id}
+        }))
+        }catch{
+          console.log("SE ROMPIO")
+        }
+        setLoading(false)
+       /* getItems
           .then((res) => {
             setItems(res);
           })
-          .finally(() => setLoading(false));
+          .finally(() => setLoading(false));*/
       }, [cId]);
     
       return loading ? (

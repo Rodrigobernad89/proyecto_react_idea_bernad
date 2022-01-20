@@ -5,35 +5,29 @@ import {productos} from '../data/productos'
 import {useParams} from 'react-router-dom'
 
 
+import db from '../firebase/firebase';
+import {getDoc,doc} from 'firebase/firestore'
+
 
 
 
 function ItemDetailContainer() {
     const [product, setProduct] = useState({});
-    const [loading, setLoading] = useState(true);
+    
 
     const { itemId } = useParams();
 
     
 
     useEffect(() => {
-    setLoading(true);
-    const getItems = new Promise((resolve) => {
-      setTimeout(() => {
-        const misProductos = productos.find(item => item.id === itemId);
-        console.log(misProductos)
-        resolve(misProductos);
-      }, 1000);
-    });
+    const ref = doc(db,'products',itemId)
+    getDoc(ref).then(querySnapshot => {
+      setProduct({...querySnapshot.data(), id:querySnapshot.id})
+    })
+    .catch(e=>console.log(e))
+  }, []);
 
-    getItems
-      .then((res) => {
-        setProduct(res);
-      })
-      .finally(() => setLoading(false));
-  }, [itemId]);
-
-  return loading ? <h2>CARGANDO...</h2> : <div><ItemDetail producto={product} /></div>;
+  return  <div><ItemDetail producto={product} /></div>;
 };
 
 
