@@ -33,7 +33,7 @@ function App() {
       {/*<ItemDetailContainer/>*/}
       <BrowserRouter>
         <NavBar/>
-        <button onClick={arrayUpload}>SUBIR COSAS</button>
+        {/*<button onClick={arrayUpload}>SUBIR COSAS</button>*/}
         <h3 className="marca">RB Musculacion</h3>
         <Routes>
           <Route path="/" element={<ItemListContainer/>}/>

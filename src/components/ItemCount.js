@@ -7,22 +7,22 @@ import { CartContext } from '../context/cartContext';
 
 
 function ItemCount({stock,initial,onAdd}) {
-    const{contador}  = useContext(CartContext)   
+    const [counter, setCounter] = useState([0])
     function handleIncrement(){
-        contador.setCounter(parseInt(contador.counter >= stock ? stock : contador.counter + 1));
+        setCounter(parseInt(counter >= stock ? stock : counter + 1));
     }
 
     function handleDecrement(){
-        contador.setCounter(contador.counter <=0 ? 0 : contador.counter - 1);
+        setCounter(counter <=0 ? 0 : counter - 1);
     }
 
     return (
         <div className="contenedorCounter">         
             <button className='botonRestar' onClick={handleDecrement}><FaMinus/></button>
-            <span className="contador">{contador.counter}</span>
+            <span className="contador">{counter}</span>
             <button className='botonSumar' onClick={handleIncrement}><FaPlus/></button>
             <div>
-                <button className="botonAgregar"onClick={onAdd}>Agregar al Carrito</button>
+                <button className="botonAgregar"onClick={()=>onAdd(counter)}>Agregar al Carrito</button>
             </div>
         </div>
     )

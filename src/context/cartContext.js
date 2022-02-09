@@ -9,7 +9,7 @@ export const CartContext = createContext({
 
 export function CartContextProvider(props){
     const [productlist, setProductlist] = useState([])
-    const [counter, setCounter] = useState([0])
+    //const [counter, setCounter] = useState([0])
 
     useEffect(() => {
         console.log('items',productlist);
@@ -31,7 +31,6 @@ export function CartContextProvider(props){
 
     const clear=()=>{
         setProductlist([])
-        setCounter([0])
     }
 
    
@@ -41,7 +40,7 @@ export function CartContextProvider(props){
     const context={
         productosAgregados:productlist,
         addItem: addItem,
-        contador:{counter,setCounter},
+        //contador:{counter,setCounter},
         clear:clear,
         removeItem:removeItem
     }

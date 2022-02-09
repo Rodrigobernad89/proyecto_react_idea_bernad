@@ -8,14 +8,17 @@ import { CartContext } from '../context/cartContext';
 function ItemDetail({producto}) {
     const{id,title,pictureUrl,descripcion,price,stock}=producto
     const [added, setAdded] = useState(false)
+    const[cantidad,setCantidad]=useState([0])
     const {addItem,productosAgregados,contador} = useContext(CartContext)
     
     const clickHandler=(e)=>{
-        addItem({id,title,price,quantity:contador.counter})
+        addItem({id,title,price,quantity:cantidad,total:price*cantidad})
     }    
 
-    const onAdd= () =>{
+    const onAdd= (childData) =>{
         setAdded(true)
+        setCantidad(childData)
+        console.log(cantidad);
     }
 
     useEffect(()=>{

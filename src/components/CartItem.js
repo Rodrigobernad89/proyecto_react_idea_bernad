@@ -15,10 +15,11 @@ function CartItem({item,removeItem}) {
 
     return (
         <div>
-            <div>
+            <div className='cartItem'>
                 <h4 className="titulo-detalle">{item.title}</h4>
                 <span className="contador">{item.quantity}</span>
-                <button onClick={removeHandler}>Remover Producto</button>
+                <span className=''>Total: {item.total}</span>
+                <button className="botonAgregar"onClick={removeHandler}>Remover Producto</button>
             </div>
             
             
